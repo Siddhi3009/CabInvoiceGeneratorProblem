@@ -7,7 +7,7 @@ namespace CabInvoiceGenerator
     {
         //Variable.
         RideType rideType;
-        private RideRepository rideRepository;
+        public RideRepository rideRepository;
         //Constants.
         private readonly double MINIMUM_COST_PER_KM;
         private readonly int COST_PER_TIME;
