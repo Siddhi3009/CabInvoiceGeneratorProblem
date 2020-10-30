@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
 namespace CabInvoiceGenerator
 {
     public class CabInvoiceException : Exception
@@ -28,5 +27,4 @@ namespace CabInvoiceGenerator
             this.type = type;
         }
     }
-
 }
