@@ -1,5 +1,7 @@
 using NUnit.Framework;
 using CabInvoiceGenerator;
+using System;
+
 namespace CabInvoiceGeneratorTest
 {
     public class Tests
@@ -23,6 +25,16 @@ namespace CabInvoiceGeneratorTest
             int time = 5;
             double fare = invoiceGenerator.CalculateFare(distance, time);
             double expected = 25;
+            Assert.AreEqual(expected, fare);
+        }
+        [Test]
+        public void GivenRideDetails_ShouldReturnMinimumFare()
+        {
+            invoiceGenerator = new InvoiceGenerator(RideType.NORMAL);
+            double distance = 0.2;
+            int time = 2;
+            double fare = invoiceGenerator.CalculateFare(distance, time);
+            double expected = 5;
             Assert.AreEqual(expected, fare);
         }
         [Test]
@@ -82,6 +94,23 @@ namespace CabInvoiceGeneratorTest
             double fare = invoiceGenerator.CalculateFare(distance, time);
             double expected = 40;
             Assert.AreEqual(expected, fare);
+        }
+        [Test]
+        public void GivenInvalidUserId_ShouldReturnCustomException()
+        {
+            string userId = "123";
+            string expected = "Invalid UserID";
+            string actual = null;
+            try
+            {
+                invoiceGenerator = new InvoiceGenerator(RideType.NORMAL);
+                Ride[] rides = invoiceGenerator.rideRepository.GetRides(userId);
+            }
+            catch (CabInvoiceException exception)
+            {
+                actual = exception.Message;
+            }
+            Assert.AreEqual(expected,actual);
         }
     }
 }
