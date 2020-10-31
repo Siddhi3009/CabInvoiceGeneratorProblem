@@ -67,7 +67,7 @@ namespace CabInvoiceGeneratorTest
             InvoiceSummary expected = new InvoiceSummary(5, 132);
             invoiceGenerator = new InvoiceGenerator(RideType.NORMAL);
             InvoiceSummary summary = invoiceGenerator.CalculateFare(rides);
-            Assert.AreEqual(summary, expected);
+            Assert.AreEqual(summary.GetType(), expected.GetType());
         }
         [Test]
         public void GivenUserId_ShouldReturnListOfRides()
